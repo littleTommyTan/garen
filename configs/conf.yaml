@@ -1,0 +1,12 @@
+# postgres
+pg_host : 127.0.0.1
+pg_port : 5432
+pg_db : postgres
+pg_user : root
+pg_pwd :
+dsn: postgresql://root@127.0.0.1:5432/postgres?sslmode=disable
+
+# redis
+redis_host: 127.0.0.1
+redis_port: 6379
+redis_pwd: redis-pwd

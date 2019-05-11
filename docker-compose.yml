@@ -1,0 +1,64 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD:
+
+      #  reverse-proxy:
+      #    image: traefik # The official Traefik docker image
+      #    command: --api --docker # Enables the web UI and tells Traefik to listen to docker
+      #    ports:
+      #      - "80:80"     # The HTTP port
+      #      - "8080:8080" # The Web UI (enabled by --api)
+      #    volumes:
+      #      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+      #
+      #  whoami:
+      #    image: containous/whoami # A container that exposes an API to show its IP address
+      #    labels:
+      #      - "traefik.frontend.rule=Host:whoami.docker.localhost"
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  redis:
+    image: redis
+    container_name: redis
+    command: redis-justice --requirepass 'redis-pwd'
+    restart: always
+    ports:
+      - '6379:6379'
+
+#  zookeeper:
+#    image: wurstmeister/zookeeper
+#    container_name: zookeeper
+#    restart: always
+#    ports:
+#      - '2181:2181'
+#
+#  kafka:
+#    image: wurstmeister/kafka
+#    container_name: kafka
+#    restart: always
+#    links:
+#      - zookeeper:zk
+#    ports:
+#      - '9092:9092'
+#    depends_on:
+#      - zookeeper
+#    environment:
+#      KAFKA_ADVERTISED_HOST_NAME: 192.168.1.4
+#      KAFKA_ADVERTISED_PORT: '9092'
+#      KAFKA_ZOOKEEPER_CONNECT: zk:2181
