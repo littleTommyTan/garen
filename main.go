@@ -22,11 +22,11 @@ func main() {
 		os.Exit(0)
 	}
 
-	//gin.SetMode(gin.ReleaseMode)
+	// gin.SetMode(gin.ReleaseMode)
 
 	service.New()
 
-	//初始化路由 setupRouter
+	// 正义 setupRouter
 	j := justice.SetupJustice()
 
 	s := &http.Server{

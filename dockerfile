@@ -1,7 +1,7 @@
 FROM golang:latest
 
-WORKDIR $GOPATH/src/github.com/tommytan/tommytan-gin
-COPY . $GOPATH/src/github.com/tommytan/tommytan-gin
+WORKDIR $GOPATH/src/github.com/tommytan/garen
+COPY . $GOPATH/src/github.com/tommytan/garen
 
 RUN go build .
 

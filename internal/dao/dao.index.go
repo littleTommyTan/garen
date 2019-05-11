@@ -24,10 +24,9 @@ func New() (dao *Dao) {
 	connection.AutoMigrate(&models.CarOrder{})
 	connection.AutoMigrate(&models.User{})
 
-	// GetInstance func return a db connection instance
 	client := redis.NewClient(&redis.Options{
 		Addr:     "127.0.0.1:6379",
-		Password: configs.GetConfiguration().RedisPwd, // no password set
+		Password: configs.GetConfiguration().RedisPwd,
 		PoolSize: 8,
 	})
 	_, err = client.Ping().Result()
