@@ -11,7 +11,7 @@ type CarOrder struct {
 
 type User struct {
 	ID            int    `gorm:"primary_key"`
-	OpenId        string `gorm:"unique_index"`
+	OpenId        string
 	NickName      string
 	Sex           int
 	Country       string

@@ -15,6 +15,12 @@
 			"revisionTime": "2019-05-03T12:35:46Z"
 		},
 		{
+			"checksumSHA1": "56J7Zbj/haU4YAzYq+PvTfFxk8Y=",
+			"path": "github.com/bradfitz/gomemcache/memcache",
+			"revision": "551aad21a6682b95329c1f5bd62ee5060d64f7e8",
+			"revisionTime": "2019-03-29T17:39:43Z"
+		},
+		{
 			"checksumSHA1": "CSPbwbyzqA6sfORicn4HFtIhF/c=",
 			"path": "github.com/davecgh/go-spew/spew",
 			"revision": "d8f796af33cc11cb798c1aaeb27a4ebc5099927d",
@@ -137,6 +143,12 @@
 			"revisionTime": "2019-02-18T23:22:22Z"
 		},
 		{
+			"checksumSHA1": "29SMun24tC5a7pMCmb9Ay8RP1ic=",
+			"path": "github.com/gomodule/redigo/redis",
+			"revision": "39e2c31b7ca38b521ceb836620a269e62c895dc9",
+			"revisionTime": "2019-03-22T06:41:13Z"
+		},
+		{
 			"checksumSHA1": "egNFo9YNSU8Q7vpFF/h3tIJdnEU=",
 			"path": "github.com/jinzhu/gorm",
 			"revision": "11caf9f072bf26b68802e0ba247237ef1aa40b2a",
@@ -227,6 +239,96 @@
 			"revisionTime": "2018-10-16T18:43:25Z"
 		},
 		{
+			"checksumSHA1": "1pjFor3k0X3pJod1yMKFoxdq+fw=",
+			"path": "github.com/silenceper/wechat",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "ZGeNsjCjZtY6r1dupAxc+rg6S7M=",
+			"path": "github.com/silenceper/wechat/cache",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "Gy9dQgJP85FrEHzJ29AboTR4wUc=",
+			"path": "github.com/silenceper/wechat/context",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "irMPArUY7PB3hsIhHWbGP909NgQ=",
+			"path": "github.com/silenceper/wechat/js",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "yTm4YWPeqCxuddrS/IPafFMtcj0=",
+			"path": "github.com/silenceper/wechat/material",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "lBS30NZQZTcj1hlE+gj1Mtva/Cw=",
+			"path": "github.com/silenceper/wechat/menu",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "NRg3Elw7hGG+m1hgVoWG0DY3c+M=",
+			"path": "github.com/silenceper/wechat/message",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "00+LikUqgQugX86cuyHT2ZS7SGA=",
+			"path": "github.com/silenceper/wechat/miniprogram",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "By2Un+XKY3fFByctOf0yYmtd0ew=",
+			"path": "github.com/silenceper/wechat/oauth",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "S5c9VQkUheYi/djC9O1Iv4963V0=",
+			"path": "github.com/silenceper/wechat/pay",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "X1SJk6y3HsOZwVxs5FSyIIT7wr4=",
+			"path": "github.com/silenceper/wechat/qr",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "AC5+ehmKBo4YY91KiEWpayjahQ8=",
+			"path": "github.com/silenceper/wechat/server",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "RDTWgKPbLHrHlc4TY4AyZQe3eYQ=",
+			"path": "github.com/silenceper/wechat/template",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "ndUp4gkpNEqHHEHV+vLuqci50TU=",
+			"path": "github.com/silenceper/wechat/user",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
+			"checksumSHA1": "kQ9hpww74GcpZ43/LvpPeMX2ZPY=",
+			"path": "github.com/silenceper/wechat/util",
+			"revision": "42332eca27305295d688bf251d3a279ea2de38fc",
+			"revisionTime": "2019-04-23T13:28:39Z"
+		},
+		{
 			"checksumSHA1": "HdB4xDS5Fjua5RhBCeyeZgzR/g4=",
 			"path": "github.com/snluu/uuid",
 			"revision": "1dd34a9ad6c0e8dec93107f9c7425ea5713f78e1",
@@ -237,6 +339,10 @@
 			"path": "github.com/ugorji/go/codec",
 			"revision": "3797a84a37c38f1fd76db9d861cee017ae3e1903",
 			"revisionTime": "2019-05-02T14:14:48Z"
+		},
+		{
+			"path": "golang.org/x/crypto/pkcs12",
+			"revision": ""
 		},
 		{
 			"checksumSHA1": "P/k5ZGf0lEBgpKgkwy++F7K1PSg=",

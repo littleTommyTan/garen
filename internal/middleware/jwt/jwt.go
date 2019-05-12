@@ -1,13 +1,14 @@
 package jwt
 
 import (
+	"errors"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"github.com/go-redis/redis"
-	"github.com/tommytan/garen/internal/service"
+	"net/http"
+	"time"
 )
 
-// AuthRequired is jwt auth middleware
-func AuthRequired() gin.HandlerFunc {
+func Auth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.Request.Header.Get("x-garen-token")
 		if token == "" {
@@ -15,22 +16,103 @@ func AuthRequired() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-
-		// 实际上，Dao结构体的redis和db对象不应该被导出，所以应该在Dao里面写关于数据访问的逻辑就像下面的service.Dao.VerifyToken，这是因为数据访问的逻辑大多可以复用，如getList
-		// 不过，因为我们项目小且需要快速开发，允许一些较简单的访问逻辑，直接处理就好
-
-		//openId, err := service.Dao.Redis.Get("userlist:" + token).Result()
-		openId, err := service.Dao.VerifyToken("userlist:" + token)
-
-		if err == redis.Nil {
-			c.String(401, "Not Authorized")
+		j := NewJWT()
+		// parseToken 解析token包含的信息
+		claims, err := j.ParseToken(token)
+		if err != nil {
+			c.JSON(http.StatusUnauthorized, err.Error())
 			c.Abort()
 			return
 		}
-
-		// TODO 刷新
-
-		c.Set("userId", openId)
-		c.Next()
+		// 继续交由下一个路由处理,并将解析出的信息传递下去
+		c.Set("userId", claims.UserID)
 	}
 }
+
+// 常量
+var (
+	TokenExpired     = errors.New("授权过期了呢")
+	TokenNotValidYet = errors.New("token还不能用")
+	TokenMalformed   = errors.New("token格式都不对")
+	TokenInvalid     = errors.New("根本就是没用的token")
+	SignKey          = "i love garen"
+)
+
+// GetSignKey 获取signKey
+func GetSignKey() string {
+	return SignKey
+}
+
+// NewJWT 新建一个jwt实例
+func NewJWT() *JWT {
+	return &JWT{
+		[]byte(GetSignKey()),
+	}
+}
+
+// JWT 签名结构
+type JWT struct {
+	SigningKey []byte
+}
+
+// CustomClaims 载荷
+type CustomClaims struct {
+	UserID string `json:"userId"`
+	jwt.StandardClaims
+}
+
+// CreateToken 生成一个token
+func (j *JWT) CreateToken(userId string) (string, error) {
+	claims := CustomClaims{
+		userId,
+		jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(time.Hour * 2).Unix(),
+			Issuer:    "tommytan-issuer",
+		},
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256,claims)
+	return token.SignedString(j.SigningKey)
+}
+
+// ParseToken 解析Token
+func (j *JWT) ParseToken(tokenString string) (*CustomClaims, error) {
+	token, err := jwt.ParseWithClaims(tokenString,&CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, errors.New("not authorized")
+		}
+		return j.SigningKey, nil
+	})
+	if err != nil {
+		if ve, ok := err.(*jwt.ValidationError); ok {
+			if ve.Errors&jwt.ValidationErrorMalformed != 0 {
+				return nil, TokenMalformed
+			} else if ve.Errors&jwt.ValidationErrorExpired != 0 {
+				return nil, TokenExpired
+			} else if ve.Errors&jwt.ValidationErrorNotValidYet != 0 {
+				return nil, TokenNotValidYet
+			} else {
+				return nil, TokenInvalid
+			}
+		}
+	}
+	return token.Claims.(*CustomClaims), nil
+}
+
+//// RefreshToken 更新token
+//func (j *JWT) RefreshToken(tokenString string) (string, error) {
+//	jwt.TimeFunc = func() time.Time {
+//		return time.Unix(0, 0)
+//	}
+//	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
+//		return j.SigningKey, nil
+//	})
+//	if err != nil {
+//		return "", err
+//	}
+//	if claims, ok := token.Claims.(*CustomClaims); ok && token.Valid {
+//		jwt.TimeFunc = time.Now
+//		claims.StandardClaims.ExpiresAt = time.Now().Add(1 * time.Hour).Unix()
+//		return j.CreateToken(*claims)
+//	}
+//	return "", TokenInvalid
+//}

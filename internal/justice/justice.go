@@ -2,6 +2,8 @@ package justice
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/tommytan/garen/internal/app/user"
+	"github.com/tommytan/garen/internal/app/wechat"
 	"github.com/tommytan/garen/internal/middleware/jwt"
 	"log"
 	"time"
@@ -17,7 +19,7 @@ func SetupJustice() *gin.Engine {
 		c.String(200, "pong")
 	})
 
-	r.GET("/ping/vip", jwt.AuthRequired(), func(c *gin.Context) {
+	r.GET("/ping/vip", jwt.Auth(), func(c *gin.Context) {
 		val, _ := c.MustGet("userId").(string)
 		c.String(200, "pong pong pong, hi vip "+val)
 	})
@@ -33,6 +35,9 @@ func SetupJustice() *gin.Engine {
 			log.Println("Done! in path " + cCp.Request.URL.Path)
 		}()
 	})
+
+	wechat.DecorateRouterGroup(r)
+	user.DecorateRouterGroup(r)
 
 	return r
 }
