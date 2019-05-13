@@ -149,6 +149,12 @@
 			"revisionTime": "2019-03-22T06:41:13Z"
 		},
 		{
+			"checksumSHA1": "ipOmfm2LvGPzstkoctFkxbgoOLw=",
+			"path": "github.com/jasonlvhit/gocron",
+			"revision": "5bcdd9fcfa9bf10574722841a11ccb2a57866dc8",
+			"revisionTime": "2019-04-02T02:43:47Z"
+		},
+		{
 			"checksumSHA1": "egNFo9YNSU8Q7vpFF/h3tIJdnEU=",
 			"path": "github.com/jinzhu/gorm",
 			"revision": "11caf9f072bf26b68802e0ba247237ef1aa40b2a",

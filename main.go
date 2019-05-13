@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/tommytan/garen/configs"
+	"github.com/tommytan/garen/internal/cron"
 	"github.com/tommytan/garen/internal/justice"
 	"github.com/tommytan/garen/internal/service"
 	"net/http"
@@ -22,8 +23,9 @@ func main() {
 		os.Exit(0)
 	}
 
-	// gin.SetMode(gin.ReleaseMode)
+	//gin.SetMode(gin.ReleaseMode)
 
+	// 初始化系统服务
 	service.New()
 
 	// 正义 setupRouter
@@ -34,8 +36,11 @@ func main() {
 		Handler:        j,
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
-		MaxHeaderBytes: 1 << 20,
+		MaxHeaderBytes: 2 << 20,
 	}
+
+	// 初始化定时任务
+	cron.Cron()
 
 	_ = s.ListenAndServe()
 }

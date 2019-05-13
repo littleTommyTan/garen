@@ -37,3 +37,13 @@ func hello(c *gin.Context) {
 	}
 	c.String(http.StatusOK, accessToken)
 }
+
+func FetchAccessToken() {
+	accessToken, err := wechatServer.GetAccessToken()
+	if err != nil {
+		log.Print(err.Error())
+		return
+	}
+	log.Print(accessToken)
+}
+
