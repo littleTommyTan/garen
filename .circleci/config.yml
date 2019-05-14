@@ -1,0 +1,25 @@
+# Golang CircleCI 2.0 configuration file
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version
+      - image: circleci/golang:1.9
+
+    working_directory: /go/src/github.com/tommytan/garen
+    steps:
+      - checkout
+
+      - run:
+          name: Package Sync
+          command: |
+            tools/package-sync.sh
+
+      - run: go build .
+
+workflows:
+  version: 2
+  basic:
+    jobs:
+      - build
