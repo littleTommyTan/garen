@@ -18,6 +18,8 @@ jobs:
 
       - run: go build .
 
+      - run: ls -al
+
 workflows:
   version: 2
   basic:
