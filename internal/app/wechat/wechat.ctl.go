@@ -8,7 +8,9 @@ import (
 	"net/http"
 )
 
-func DecorateRouterGroup(r *gin.Engine) {
+var wechatService *wechat.Wechat
+
+func init() {
 	redis := cache.NewRedis(&cache.RedisOpts{Host: "127.0.0.1:6379", Password: "redis-pwd", Database: 0, MaxIdle: 0, MaxActive: 0, IdleTimeout: 0})
 	//配置微信参数
 	config := &wechat.Config{
@@ -18,17 +20,18 @@ func DecorateRouterGroup(r *gin.Engine) {
 		//EncodingAESKey: "your encoding aes key",
 		Cache: redis,
 	}
-	wechatServer = wechat.NewWechat(config)
+	wechatService = wechat.NewWechat(config)
+}
+
+func DecorateRouterGroup(r *gin.Engine) {
 	g := r.Group("/wechat")
 	{
 		g.GET("/hello", hello)
 	}
 }
 
-var wechatServer *wechat.Wechat
-
 func hello(c *gin.Context) {
-	accessToken, err := wechatServer.GetAccessToken()
+	accessToken, err := wechatService.GetAccessToken()
 	if err != nil {
 		log.Print(err.Error())
 		c.String(http.StatusInternalServerError, err.Error())
@@ -38,12 +41,12 @@ func hello(c *gin.Context) {
 	c.String(http.StatusOK, accessToken)
 }
 
-func FetchAccessToken() {
-	accessToken, err := wechatServer.GetAccessToken()
+func FetchAccessToken() (string, error) {
+	accessToken, err := wechatService.GetAccessToken()
 	if err != nil {
 		log.Print(err.Error())
-		return
+		return "", err
 	}
 	log.Print(accessToken)
+	return accessToken, nil
 }
-

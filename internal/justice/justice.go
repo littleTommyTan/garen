@@ -2,6 +2,7 @@ package justice
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/tommytan/garen/internal/app/music"
 	"github.com/tommytan/garen/internal/app/user"
 	"github.com/tommytan/garen/internal/app/wechat"
 	"github.com/tommytan/garen/internal/middleware/jwt"
@@ -37,7 +38,10 @@ func SetupJustice() *gin.Engine {
 	})
 
 	wechat.DecorateRouterGroup(r)
+
 	user.DecorateRouterGroup(r)
+
+	music.DecorateRouterGroup(r)
 
 	return r
 }
