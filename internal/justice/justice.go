@@ -5,6 +5,7 @@ import (
 	"github.com/tommytan/garen/internal/app/music"
 	"github.com/tommytan/garen/internal/app/user"
 	"github.com/tommytan/garen/internal/app/wechat"
+	"github.com/tommytan/garen/internal/app/whoareyou"
 	"github.com/tommytan/garen/internal/middleware/jwt"
 	"log"
 	"time"
@@ -42,6 +43,8 @@ func SetupJustice() *gin.Engine {
 	user.DecorateRouterGroup(r)
 
 	music.DecorateRouterGroup(r)
+
+	whoareyou.DecorateRouterGroup(r)
 
 	return r
 }
