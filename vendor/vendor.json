@@ -347,10 +347,6 @@
 			"revisionTime": "2019-05-02T14:14:48Z"
 		},
 		{
-			"path": "golang.org/x/crypto/pkcs12",
-			"revision": ""
-		},
-		{
 			"checksumSHA1": "P/k5ZGf0lEBgpKgkwy++F7K1PSg=",
 			"path": "gopkg.in/go-playground/validator.v8",
 			"revision": "5f1438d3fca68893a817e4a66806cea46a9e4ebf",
