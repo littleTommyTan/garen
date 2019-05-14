@@ -29,3 +29,6 @@
 # vendor
 /vendor/*
 !/vendor/vendor.json
+
+# cockroach
+/cockroach-data
