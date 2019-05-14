@@ -4,7 +4,8 @@ pg_port : 5432
 pg_db : postgres
 pg_user : root
 pg_pwd :
-dsn: "host=127.0.0.1 port=5432 user=root password=pg-pwd dbname=postgres  sslmode=disable"
+#dsn: host=127.0.0.1 port=5432 user=root password=pg-pwd dbname=postgres  sslmode=disable
+dsn: postgresql://root@localhost:26257?sslmode=disable
 
 # redis
 redis_host: 127.0.0.1

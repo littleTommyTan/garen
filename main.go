@@ -38,7 +38,7 @@ func main() {
 	// 正义 setupRouter
 	j := justice.SetupJustice()
 	s := &http.Server{
-		Addr:           ":8080",
+		Addr:           ":2333",
 		Handler:        j,
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
