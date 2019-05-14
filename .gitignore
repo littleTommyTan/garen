@@ -28,5 +28,4 @@
 
 # vendor
 /vendor/*
-!/vendor/golang.org/
 !/vendor/vendor.json
