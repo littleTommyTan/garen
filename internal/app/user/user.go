@@ -19,7 +19,9 @@ func DecorateRouterGroup(r *gin.Engine) {
 }
 
 func register(c *gin.Context) {
-	var form struct{ Nickname string `form:"nickname" binding:"required"` }
+	var form struct {
+		Nickname string `form:"nickname" binding:"required"`
+	}
 	err := c.ShouldBindQuery(&form)
 	if err != nil {
 		c.String(400, "参数不正确")
@@ -31,7 +33,9 @@ func register(c *gin.Context) {
 }
 
 func login(c *gin.Context) {
-	var form struct{ Nickname string `form:"nickname" binding:"required"` }
+	var form struct {
+		Nickname string `form:"nickname" binding:"required"`
+	}
 	err := c.ShouldBindQuery(&form)
 	if err != nil {
 		log.Print(err.Error())
