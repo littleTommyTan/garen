@@ -2,11 +2,14 @@ package cron
 
 import (
 	"github.com/jasonlvhit/gocron"
-	"github.com/tommytan/garen/internal/app/wechat"
+	"log"
 )
 
+func ring() {
+	log.Print("goCron ring ~")
+}
 func Cron() {
-	gocron.Every(7000).Seconds().Do(wechat.FetchAccessToken)
+	gocron.Every(60).Seconds().Do(ring)
 	gocron.Start()
 
 	gocron.RunAll()

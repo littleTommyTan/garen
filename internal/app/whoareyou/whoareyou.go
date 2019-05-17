@@ -1,7 +1,10 @@
 package whoareyou
 
 import (
+	"fmt"
+	"github.com/getsentry/raven-go"
 	"github.com/gin-gonic/gin"
+	"github.com/tommytan/garen/internal/service"
 	"net/http"
 	"time"
 )
@@ -10,7 +13,22 @@ func DecorateRouterGroup(r *gin.Engine) {
 	g := r.Group("/whoareyou")
 	{
 		g.GET("/hello", hello)
+		g.POST("/uploadAvatar", uploadAvatar)
 	}
+}
+func uploadAvatar(c *gin.Context) {
+	// 单文件
+	file, fh, err := c.Request.FormFile("file")
+	if err != nil {
+		c.String(400, "file invalid")
+		return
+	}
+	url, err := service.Dao.BucketUpload(file, fh)
+	if err != nil {
+		c.String(http.StatusServiceUnavailable, fmt.Sprintf("'%s' upload failed!", fh.Filename))
+		return
+	}
+	c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", url))
 }
 
 func hello(c *gin.Context) {
@@ -18,6 +36,7 @@ func hello(c *gin.Context) {
 	y, m, d, err := getTimeFromStrDate(birthday)
 	if err != nil {
 		c.String(http.StatusBadRequest, "出生日期格式不正确")
+		raven.CaptureError(err, map[string]string{"category": "test"})
 		return
 	}
 	c.SecureJSON(200, gin.H{

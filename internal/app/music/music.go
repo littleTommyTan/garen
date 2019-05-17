@@ -23,11 +23,13 @@ func GetSongName(c *gin.Context) {
 	listId := c.Query("listId")
 	if listId == "" {
 		c.String(400, "参数校验错误")
+		return
 	}
 
 	resp, err := http.Get(fmt.Sprint("https://bird.ioliu.cn/netease/playlist?id=", listId))
 	if err != nil {
 		c.String(http.StatusServiceUnavailable, "")
+		return
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)

@@ -15,10 +15,22 @@
 			"revisionTime": "2019-05-03T12:35:46Z"
 		},
 		{
+			"checksumSHA1": "c+tkvvfApn5fJLUSY90Q7p6ykXE=",
+			"path": "github.com/aliyun/aliyun-oss-go-sdk/oss",
+			"revision": "08079eb9f6aaa13ee00b8fade6ceeffa138bf877",
+			"revisionTime": "2019-04-16T14:42:36Z"
+		},
+		{
 			"checksumSHA1": "56J7Zbj/haU4YAzYq+PvTfFxk8Y=",
 			"path": "github.com/bradfitz/gomemcache/memcache",
 			"revision": "551aad21a6682b95329c1f5bd62ee5060d64f7e8",
 			"revisionTime": "2019-03-29T17:39:43Z"
+		},
+		{
+			"checksumSHA1": "f964kTcl3PgMy2Zg+BSodsl0RFs=",
+			"path": "github.com/certifi/gocertifi",
+			"revision": "d2eda712971317d7dd278bc2a52acda7e945f97e",
+			"revisionTime": "2019-04-14T21:10:42Z"
 		},
 		{
 			"checksumSHA1": "CSPbwbyzqA6sfORicn4HFtIhF/c=",
@@ -49,6 +61,12 @@
 			"path": "github.com/eapache/queue",
 			"revision": "093482f3f8ce946c05bcba64badd2c82369e084d",
 			"revisionTime": "2018-02-27T14:14:24Z"
+		},
+		{
+			"checksumSHA1": "xdNedaWbTpJY2QCfblaAzDbV9Ng=",
+			"path": "github.com/getsentry/raven-go",
+			"revision": "c977f96e109525a5d8fa10a19165341f601f38b0",
+			"revisionTime": "2019-05-13T20:03:03Z"
 		},
 		{
 			"checksumSHA1": "QeKwBtN2df+j+4stw3bQJ6yO4EY=",

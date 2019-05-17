@@ -4,7 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/silenceper/wechat"
 	"github.com/silenceper/wechat/cache"
-	"log"
 	"net/http"
 )
 
@@ -26,27 +25,22 @@ func init() {
 func DecorateRouterGroup(r *gin.Engine) {
 	g := r.Group("/wechat")
 	{
-		g.GET("/hello", hello)
+		g.GET("/conf", getJsConf)
 	}
 }
 
-func hello(c *gin.Context) {
-	accessToken, err := wechatService.GetAccessToken()
+func getJsConf(c *gin.Context) {
+	config, err := wechatService.GetJs().GetConfig(c.Request.URL.Path)
 	if err != nil {
-		log.Print(err.Error())
-		c.String(http.StatusInternalServerError, err.Error())
-		c.Abort()
+		c.String(http.StatusServiceUnavailable, "get js conf failed")
 		return
 	}
-	c.String(http.StatusOK, accessToken)
-}
-
-func FetchAccessToken() (string, error) {
-	accessToken, err := wechatService.GetAccessToken()
-	if err != nil {
-		log.Print(err.Error())
-		return "", err
-	}
-	log.Print(accessToken)
-	return accessToken, nil
+	c.SecureJSON(200, gin.H{
+		"debug":     false,
+		"appId":     config.AppID,
+		"timestamp": config.Timestamp,
+		"nonceStr":  config.NonceStr,
+		"signature": config.Signature,
+		"jsApiList": []string{"getNetworkType", "updateAppMessageShareData", "updateTimelineShareData"},
+	})
 }

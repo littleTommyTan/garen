@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/getsentry/raven-go"
 	"net/http"
 	"os"
 	"time"
@@ -25,6 +26,8 @@ func init() {
 	}
 	// 初始化系统服务
 	service.New()
+
+	_ = raven.SetDSN("https://06590039334549c18b926a9623b7c183:d64f1d94d5b94a2a8915b3c42f188980@sentry.io/1461854")
 }
 
 // main 入口 entrance

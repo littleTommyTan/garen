@@ -6,15 +6,17 @@ import (
 )
 
 type Configuration struct {
-	PGHost    string `yaml:"pg_host"`
-	PGPort    int    `yaml:"pg_port"`
-	PGDb      string `yaml:"pg_db"`
-	PGUser    string `yaml:"pg_user"`
-	PGPwd     string `yaml:"pg_pwd"`
-	DSN       string `yaml:"dsn"`
-	RedisHost string `yaml:"redis_host"`
-	RedisPort int    `yaml:"redis_port"`
-	RedisPwd  string `yaml:"redis_pwd"`
+	//PGHost    string `yaml:"pg_host"`
+	//PGPort    int    `yaml:"pg_port"`
+	//PGDb      string `yaml:"pg_db"`
+	//PGUser    string `yaml:"pg_user"`
+	//PGPwd     string `yaml:"pg_pwd"`
+	DSN                string `yaml:"dsn"`
+	RedisHost          string `yaml:"redis_host"`
+	RedisPort          int    `yaml:"redis_port"`
+	RedisPwd           string `yaml:"redis_pwd"`
+	OssAccessKey       string `yaml:"aliyun_oss_accesskey"`
+	OssAccessKeySecret string `yaml:"aliyun_oss_accesskey_secret"`
 }
 
 var configuration *Configuration
