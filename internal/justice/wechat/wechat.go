@@ -10,7 +10,7 @@ import (
 
 var wechatService *wechat.Wechat
 
-func init() {
+func DecorateRouterGroup(r *gin.Engine) {
 	redis := cache.NewRedis(&cache.RedisOpts{Host: "127.0.0.1:6379", Password: "redis-pwd", Database: 0, MaxIdle: 0, MaxActive: 0, IdleTimeout: 0})
 	//配置微信参数
 	config := &wechat.Config{
@@ -21,9 +21,7 @@ func init() {
 		Cache: redis,
 	}
 	wechatService = wechat.NewWechat(config)
-}
 
-func DecorateRouterGroup(r *gin.Engine) {
 	g := r.Group("/wechat")
 	{
 		g.GET("/conf", getJsConf)
