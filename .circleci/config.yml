@@ -16,7 +16,7 @@ jobs:
           command: |
             tools/package-sync.sh
 
-      - run: go build .
+#      - run: go build .
 
       - run: ls -al
 

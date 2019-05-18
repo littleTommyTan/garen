@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func DecorateRouterGroup(r *gin.Engine) {
+func Assemble(r *gin.Engine) {
 	g := r.Group("/music")
 	{
 		g.GET("/hello", GetSongName)

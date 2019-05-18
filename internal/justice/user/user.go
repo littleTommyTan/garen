@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func DecorateRouterGroup(r *gin.Engine) {
+func Assemble(r *gin.Engine) {
 	g := r.Group("/user")
 	{
 		g.GET("/register", register)

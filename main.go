@@ -38,8 +38,8 @@ func main() {
 	// 初始化系统服务
 	service.New()
 
-	// 正义 setupRouter
-	j := justice.SetupJustice()
+	// 审判 setupRouter
+	j := justice.SetupJudgment()
 	s := &http.Server{
 		Addr:           ":2333",
 		Handler:        j,

@@ -10,7 +10,7 @@ import (
 
 var wechatService *wechat.Wechat
 
-func DecorateRouterGroup(r *gin.Engine) {
+func Assemble(r *gin.Engine) {
 	redis := cache.NewRedis(&cache.RedisOpts{Host: "127.0.0.1:6379", Password: "redis-pwd", Database: 0, MaxIdle: 0, MaxActive: 0, IdleTimeout: 0})
 	//配置微信参数
 	config := &wechat.Config{

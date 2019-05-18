@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func DecorateRouterGroup(r *gin.Engine) {
+func Assemble(r *gin.Engine) {
 	g := r.Group("/whoareyou")
 	{
 		g.GET("/hello", hello)

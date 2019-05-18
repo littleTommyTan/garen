@@ -9,19 +9,19 @@ import (
 	"github.com/tommytan/garen/internal/justice/whoareyou"
 )
 
-// SetupJustice 路由设置router
-func SetupJustice() *gin.Engine {
+// SetupJudgment 路由设置router
+func SetupJudgment() *gin.Engine {
 	r := gin.Default()
 
-	ping.DecorateRouterGroup(r)
+	ping.Assemble(r)
 
-	wechat.DecorateRouterGroup(r)
+	wechat.Assemble(r)
 
-	user.DecorateRouterGroup(r)
+	user.Assemble(r)
 
-	music.DecorateRouterGroup(r)
+	music.Assemble(r)
 
-	whoareyou.DecorateRouterGroup(r)
+	whoareyou.Assemble(r)
 
 	return r
 }
