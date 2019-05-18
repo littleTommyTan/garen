@@ -14,6 +14,7 @@ func DecorateRouterGroup(r *gin.Engine) {
 	{
 		g.GET("/hello", hello)
 		g.POST("/uploadAvatar", uploadAvatar)
+		g.POST("/uploadAvatarSmms", uploadAvatarSmms)
 	}
 }
 func uploadAvatar(c *gin.Context) {
@@ -24,6 +25,21 @@ func uploadAvatar(c *gin.Context) {
 		return
 	}
 	url, err := service.Dao.BucketUpload(file, fh)
+	if err != nil {
+		c.String(http.StatusServiceUnavailable, fmt.Sprintf("'%s' upload failed!", fh.Filename))
+		return
+	}
+	c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", url))
+}
+
+func uploadAvatarSmms(c *gin.Context) {
+	// 单文件
+	file, fh, err := c.Request.FormFile("file")
+	if err != nil {
+		c.String(400, "file invalid")
+		return
+	}
+	url, err := service.Dao.SmmsUpload(file, fh)
 	if err != nil {
 		c.String(http.StatusServiceUnavailable, fmt.Sprintf("'%s' upload failed!", fh.Filename))
 		return
