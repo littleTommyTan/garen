@@ -1,21 +1,13 @@
-package whoareyou
+package justice
 
 import (
 	"fmt"
 	"github.com/getsentry/raven-go"
 	"github.com/gin-gonic/gin"
-	"github.com/tommytan/garen/internal/service"
 	"net/http"
 	"time"
 )
 
-func DecorateRouterGroup(r *gin.Engine) {
-	g := r.Group("/whoareyou")
-	{
-		g.GET("/hello", hello)
-		g.POST("/uploadAvatar", uploadAvatar)
-	}
-}
 func uploadAvatar(c *gin.Context) {
 	// 单文件
 	file, fh, err := c.Request.FormFile("file")
@@ -23,9 +15,24 @@ func uploadAvatar(c *gin.Context) {
 		c.String(400, "file invalid")
 		return
 	}
-	url, err := service.Dao.BucketUpload(file, fh)
+	url, err := svc.BucketUpload(file, fh)
 	if err != nil {
 		c.String(http.StatusServiceUnavailable, fmt.Sprintf("'%s' upload failed!", fh.Filename))
+		return
+	}
+	c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", url))
+}
+
+func uploadAvatarSmms(c *gin.Context) {
+	// 单文件
+	file, fh, err := c.Request.FormFile("file")
+	if err != nil {
+		c.String(400, "file invalid")
+		return
+	}
+	url, err := svc.SmmsUpload(file, fh)
+	if err != nil {
+		c.String(http.StatusServiceUnavailable, err.Error())
 		return
 	}
 	c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", url))

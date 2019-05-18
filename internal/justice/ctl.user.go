@@ -1,22 +1,12 @@
-package user
+package justice
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tommytan/garen/internal/middleware/jwt"
 	"github.com/tommytan/garen/internal/models"
-	"github.com/tommytan/garen/internal/service"
 	"log"
 	"net/http"
 	"time"
 )
-
-func DecorateRouterGroup(r *gin.Engine) {
-	g := r.Group("/user")
-	{
-		g.GET("/register", register)
-		g.GET("/login", login)
-	}
-}
 
 func register(c *gin.Context) {
 	var form struct {
@@ -28,7 +18,7 @@ func register(c *gin.Context) {
 		return
 	}
 
-	service.Dao.Db.Create(&models.User{NickName: form.Nickname})
+	svc.Dao.Db.Create(&models.User{NickName: form.Nickname})
 	c.String(http.StatusOK, form.Nickname+" 添加成功")
 }
 
@@ -43,7 +33,7 @@ func login(c *gin.Context) {
 		return
 	}
 
-	token, _ := jwt.NewJWT().CreateToken(form.Nickname)
-	service.Dao.Redis.Set("userlist:"+token, form.Nickname, time.Hour*2)
+	token, _ := NewJWT().CreateToken(form.Nickname)
+	svc.Dao.Redis.Set("userlist:"+token, form.Nickname, time.Hour*2)
 	c.String(200, token)
 }

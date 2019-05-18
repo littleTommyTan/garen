@@ -1,4 +1,4 @@
-package wechat
+package justice
 
 import (
 	"github.com/gin-gonic/gin"
@@ -20,13 +20,6 @@ func init() {
 		Cache: redis,
 	}
 	wechatService = wechat.NewWechat(config)
-}
-
-func DecorateRouterGroup(r *gin.Engine) {
-	g := r.Group("/wechat")
-	{
-		g.GET("/conf", getJsConf)
-	}
 }
 
 func getJsConf(c *gin.Context) {

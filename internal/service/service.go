@@ -1,15 +1,18 @@
 package service
 
-import "github.com/tommytan/garen/internal/dao"
+import (
+	"github.com/tommytan/garen/internal/dao"
+)
 
-var Dao *dao.Dao
-
-// New new a service and return.
-func New() {
-	Dao = dao.New()
+// Service struct
+type Service struct {
+	Dao *dao.Dao
 }
 
-// Close close the resource.
-func Close() {
-	Dao.Close()
+// New new a service and return.
+func New() (s *Service) {
+	s = &Service{
+		Dao: dao.New(),
+	}
+	return s
 }

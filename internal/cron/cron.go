@@ -12,5 +12,5 @@ func Cron() {
 	gocron.Every(60).Seconds().Do(ring)
 	gocron.Start()
 
-	gocron.RunAll()
+	//gocron.RunAll()
 }

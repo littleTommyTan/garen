@@ -1,4 +1,4 @@
-package music
+package justice
 
 import (
 	"encoding/json"
@@ -8,13 +8,6 @@ import (
 	"log"
 	"net/http"
 )
-
-func DecorateRouterGroup(r *gin.Engine) {
-	g := r.Group("/music")
-	{
-		g.GET("/hello", GetSongName)
-	}
-}
 
 // GetSongName 获取你的歌单里的第一首歌的名字 （interface map 强制类型转换入门）
 //

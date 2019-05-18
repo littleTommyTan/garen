@@ -1,4 +1,4 @@
-package jwt
+package justice
 
 import (
 	"errors"
@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func Auth() gin.HandlerFunc {
+func JwtAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.Request.Header.Get("x-garen-token")
 		if token == "" {
@@ -70,13 +70,13 @@ func (j *JWT) CreateToken(userId string) (string, error) {
 			Issuer:    "tommytan-issuer",
 		},
 	}
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256,claims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(j.SigningKey)
 }
 
 // ParseToken 解析Token
 func (j *JWT) ParseToken(tokenString string) (*CustomClaims, error) {
-	token, err := jwt.ParseWithClaims(tokenString,&CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, errors.New("not authorized")
 		}
