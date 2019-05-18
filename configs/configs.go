@@ -6,11 +6,8 @@ import (
 )
 
 type Configuration struct {
-	//PGHost    string `yaml:"pg_host"`
-	//PGPort    int    `yaml:"pg_port"`
-	//PGDb      string `yaml:"pg_db"`
-	//PGUser    string `yaml:"pg_user"`
-	//PGPwd     string `yaml:"pg_pwd"`
+	WoaAppId           string `yaml:"woa_appid"`
+	WoaAppSecret       string `yaml:"woa_app_secret"`
 	DSN                string `yaml:"dsn"`
 	RedisHost          string `yaml:"redis_host"`
 	RedisPort          int    `yaml:"redis_port"`

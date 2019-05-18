@@ -1,12 +1,12 @@
-package dao
+package service
 
 import (
 	"github.com/tommytan/garen/internal/helpers"
 	"mime/multipart"
 )
 
-func (d *Dao) BucketUpload(file multipart.File, fileHeader *multipart.FileHeader) (string, error) {
-	err := d.Bucket.PutObject(helpers.UUID()+"-"+fileHeader.Filename, file)
+func BucketUpload(file multipart.File, fileHeader *multipart.FileHeader) (string, error) {
+	err := Dao.Bucket.PutObject(helpers.UUID()+"-"+fileHeader.Filename, file)
 	if err != nil {
 		return "", err
 	}

@@ -2,7 +2,7 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tommytan/garen/internal/middleware/jwt"
+	"github.com/tommytan/garen/internal/justice/middleware/jwt"
 	"github.com/tommytan/garen/internal/models"
 	"github.com/tommytan/garen/internal/service"
 	"log"

@@ -22,7 +22,6 @@ func New() (dao *Dao) {
 		log.Print(err)
 	}
 
-	connection.AutoMigrate(&models.CarOrder{})
 	connection.AutoMigrate(&models.User{})
 
 	redisClient := redis.NewClient(&redis.Options{

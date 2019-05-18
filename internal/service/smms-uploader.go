@@ -1,9 +1,10 @@
-package dao
+package service
 
 import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"github.com/tommytan/garen/internal/models"
 	"io"
 	"io/ioutil"
 	"log"
@@ -11,29 +12,11 @@ import (
 	"net/http"
 )
 
-//用于 Upload() func
-type SmmsResponce struct {
-	Code string `json:"code"`
-	Data struct {
-		FileName  string `json:"filename"`
-		StoreName string `json:"storename"`
-		Size      int    `json:"size"`
-		Width     int    `json:"width"`
-		Height    int    `json:"height"`
-		Hash      string `json:"hash"`
-		Delete    string `json:"delete"`
-		Url       string `json:"url"`
-		Path      string `json:"path"`
-		Msg       string `json:"msg"`
-	} `json:"data,omitempty"`
-	Msg string `json:"msg,omitempty"`
-}
-
-func (d *Dao) SmmsUpload(file multipart.File, fileHeader *multipart.FileHeader) (url string, err error) {
+func SmmsUpload(file multipart.File, fileHeader *multipart.FileHeader) (url string, err error) {
 	var (
 		resp      *http.Response
 		bodyBytes []byte
-		ret       SmmsResponce
+		ret       models.SmmsResponce
 		bodyBuf   = new(bytes.Buffer)
 	)
 	bodyWriter := multipart.NewWriter(bodyBuf)

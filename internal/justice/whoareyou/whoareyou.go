@@ -24,7 +24,7 @@ func uploadAvatar(c *gin.Context) {
 		c.String(400, "file invalid")
 		return
 	}
-	url, err := service.Dao.BucketUpload(file, fh)
+	url, err := service.BucketUpload(file, fh)
 	if err != nil {
 		c.String(http.StatusServiceUnavailable, fmt.Sprintf("'%s' upload failed!", fh.Filename))
 		return
@@ -39,7 +39,7 @@ func uploadAvatarSmms(c *gin.Context) {
 		c.String(400, "file invalid")
 		return
 	}
-	url, err := service.Dao.SmmsUpload(file, fh)
+	url, err := service.SmmsUpload(file, fh)
 	if err != nil {
 		c.String(http.StatusServiceUnavailable, fmt.Sprintf("'%s' upload failed!", fh.Filename))
 		return

@@ -70,13 +70,13 @@ func (j *JWT) CreateToken(userId string) (string, error) {
 			Issuer:    "tommytan-issuer",
 		},
 	}
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256,claims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(j.SigningKey)
 }
 
 // ParseToken 解析Token
 func (j *JWT) ParseToken(tokenString string) (*CustomClaims, error) {
-	token, err := jwt.ParseWithClaims(tokenString,&CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, errors.New("not authorized")
 		}
@@ -94,6 +94,9 @@ func (j *JWT) ParseToken(tokenString string) (*CustomClaims, error) {
 				return nil, TokenInvalid
 			}
 		}
+	}
+	if token == nil {
+		return nil, errors.New("token parse return nil")
 	}
 	return token.Claims.(*CustomClaims), nil
 }
