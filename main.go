@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"github.com/getsentry/raven-go"
-	"github.com/tommytan/garen/internal/justice/middleware/logger"
 	"github.com/tommytan/garen/internal/service"
 	"net/http"
 	"os"
@@ -33,7 +32,8 @@ func main() {
 
 	//gin.SetMode(gin.ReleaseMode)
 
-	logger.AliyunLoggerTest()
+	// 阿里云日志服务测试
+	//logger.AliyunLoggerTest()
 
 	// 初始化定时任务
 	goCron.Cron()
