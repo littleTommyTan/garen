@@ -14,6 +14,9 @@ type Configuration struct {
 	RedisPwd           string `yaml:"redis_pwd"`
 	OssAccessKey       string `yaml:"aliyun_oss_accesskey"`
 	OssAccessKeySecret string `yaml:"aliyun_oss_accesskey_secret"`
+	LogEndpoint        string `yaml:"aliyun_log_endpoint"`
+	LogAccessKey       string `yaml:"aliyun_log_accesskey"`
+	LogAccessKeySecret string `yaml:"aliyun_log_accesskey_secret"`
 }
 
 var configuration *Configuration

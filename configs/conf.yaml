@@ -11,6 +11,11 @@ redis_pwd: redis-pwd
 aliyun_oss_accesskey: "不告诉你"
 aliyun_oss_accesskey_secret: "不告诉你"
 
+# Log Service
+aliyun_log_endpoint: "略"
+aliyun_log_accesskey: "略"
+aliyun_log_accesskey_secret: "略"
+
 # Wechat Offical Account
 woa_appid: "略略略"
 woa_app_secret: "略略略略"
