@@ -10,13 +10,20 @@ import (
 	"time"
 )
 
+var logClient = logrus.New()
+
 func LocalFileLogger() gin.HandlerFunc {
-	src, err := os.OpenFile(os.DevNull, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
+	//src, err := os.OpenFile(os.DevNull, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
+	_, err := os.OpenFile(os.DevNull, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
 	if err != nil {
 		fmt.Println("err", err)
 	}
-	logClient.Out = src
-	logClient.SetLevel(logrus.DebugLevel)
+	//logClient.Out = src
+	logClient.Out = os.Stdout
+
+	//logClient.SetLevel(logrus.DebugLevel)
+
+	//log writer
 	logPath := "garen.log"
 	logWriter, err := rotatelogs.New(
 		"garen.%Y-%m-%d.log",
@@ -24,9 +31,13 @@ func LocalFileLogger() gin.HandlerFunc {
 		rotatelogs.WithMaxAge(7*24*time.Hour),     // 文件最大保存时间
 		rotatelogs.WithRotationTime(24*time.Hour), // 日志切割时间间隔
 	)
+
+	//local file system hook
 	writeMap := lfshook.WriterMap{
 		logrus.InfoLevel:  logWriter,
 		logrus.FatalLevel: logWriter,
+		logrus.DebugLevel: logWriter,
+		logrus.ErrorLevel: logWriter,
 	}
 	lfHook := lfshook.NewHook(writeMap, &logrus.JSONFormatter{})
 	logClient.AddHook(lfHook)
@@ -40,17 +51,33 @@ func LocalFileLogger() gin.HandlerFunc {
 		end := time.Now()
 		// 执行时间
 		latency := end.Sub(start)
-
+		// 其他参数
 		path := c.Request.URL.Path
-
 		clientIP := c.ClientIP()
 		method := c.Request.Method
 		statusCode := c.Writer.Status()
-		logClient.Infof("| %3d | %13v | %15s | %s  %s |",
+
+		logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Debugf("| %3d | %13v | %15s | %s  %s |",
 			statusCode,
 			latency,
 			clientIP,
 			method, path,
 		)
+		logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Infof("| %3d | %13v | %15s | %s  %s |",
+			statusCode,
+			latency,
+			clientIP,
+			method, path,
+		)
+		logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Warnf("| %3d | %13v | %15s | %s  %s |",
+			statusCode,
+			latency,
+			clientIP,
+			method, path)
+		logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Errorf("| %3d | %13v | %15s | %s  %s |",
+			statusCode,
+			latency,
+			clientIP,
+			method, path)
 	}
 }
