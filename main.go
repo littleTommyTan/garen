@@ -11,10 +11,10 @@ import (
 
 	"github.com/tommytan/garen/configs"
 	goCron "github.com/tommytan/garen/internal/cron"
-	"github.com/tommytan/garen/internal/justice"
+	"github.com/tommytan/garen/internal/judgment"
 )
 
-var appYaml = flag.String("configuration", "configs/conf.yaml", "garen justice configuration file")
+var appYaml = flag.String("configuration", "configs/conf.yaml", "garen judgment configuration file")
 
 // init 系统函数 初始化
 func init() {
@@ -41,8 +41,11 @@ func main() {
 	// 初始化系统服务
 	service.New()
 
-	// 审判 setupRouter
-	j := justice.SetupJudgment()
+	//// 正义 grpc server
+	//justice.SetupGrpcJustice()
+
+	// 审判 http server
+	j := judgment.SetupHttpJudgment()
 	s := &http.Server{
 		Addr:           ":2333",
 		Handler:        j,

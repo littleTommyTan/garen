@@ -1,34 +1,34 @@
 package justice
 
 import (
-	"github.com/getsentry/raven-go"
-	"github.com/gin-contrib/sentry"
-	"github.com/gin-gonic/gin"
-	"github.com/tommytan/garen/internal/justice/middleware/logger"
-	"github.com/tommytan/garen/internal/justice/music"
-	"github.com/tommytan/garen/internal/justice/ping"
-	"github.com/tommytan/garen/internal/justice/user"
-	"github.com/tommytan/garen/internal/justice/wechat"
-	"github.com/tommytan/garen/internal/justice/whoareyou"
+	"context"
+	"log"
+	"net"
+
+	"google.golang.org/grpc"
+	pb "google.golang.org/grpc/examples/helloworld/helloworld"
 )
 
-// SetupJudgment 路由设置router
-func SetupJudgment() *gin.Engine {
-	r := gin.New()
+const (
+	port = ":50051"
+)
 
-	r.Use(sentry.Recovery(raven.DefaultClient, false))
+type server struct{}
 
-	r.Use(logger.LocalFileLogger())
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+	log.Printf("Received: %v", in.Name)
+	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
+}
 
-	ping.Assemble(r)
-
-	wechat.Assemble(r)
-
-	user.Assemble(r)
-
-	music.Assemble(r)
-
-	whoareyou.Assemble(r)
-
-	return r
+func SetupGrpcJustice() {
+	lis, err := net.Listen("tcp", port)
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+	s := grpc.NewServer()
+	pb.RegisterGreeterServer(s, &server{})
+	log.Print("grpc server on ...")
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }

@@ -57,27 +57,27 @@ func LocalFileLogger() gin.HandlerFunc {
 		method := c.Request.Method
 		statusCode := c.Writer.Status()
 
-		logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Debugf("| %3d | %13v | %15s | %s  %s |",
-			statusCode,
-			latency,
-			clientIP,
-			method, path,
-		)
+		//logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Debugf("| %3d | %13v | %15s | %s  %s |",
+		//	statusCode,
+		//	latency,
+		//	clientIP,
+		//	method, path,
+		//)
 		logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Infof("| %3d | %13v | %15s | %s  %s |",
 			statusCode,
 			latency,
 			clientIP,
 			method, path,
 		)
-		logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Warnf("| %3d | %13v | %15s | %s  %s |",
-			statusCode,
-			latency,
-			clientIP,
-			method, path)
-		logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Errorf("| %3d | %13v | %15s | %s  %s |",
-			statusCode,
-			latency,
-			clientIP,
-			method, path)
+		//logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Warnf("| %3d | %13v | %15s | %s  %s |",
+		//	statusCode,
+		//	latency,
+		//	clientIP,
+		//	method, path)
+		//logClient.WithFields(logrus.Fields{"nihao": "hello", "nishishei": "whoareyou"}).Errorf("| %3d | %13v | %15s | %s  %s |",
+		//	statusCode,
+		//	latency,
+		//	clientIP,
+		//	method, path)
 	}
 }

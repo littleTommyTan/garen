@@ -4,6 +4,7 @@ services:
     container_name: cockroach1
     image: cockroachdb/cockroach:latest
     command: start --insecure
+    restart: always
     ports:
       - "26257:26257"
       - "8080:8080"
@@ -18,6 +19,7 @@ services:
     container_name: cockroach2
     image: cockroachdb/cockroach:latest
     command: start --insecure --join=cockroach1
+    restart: always
     volumes:
       - ./cockroach-data/node2:/cockroach/cockroach-data
     depends_on:

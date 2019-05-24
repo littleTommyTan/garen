@@ -13,10 +13,12 @@ func Assemble(r *gin.Engine) {
 	g := r.Group("/whoareyou")
 	{
 		g.GET("/hello", hello)
+		g.GET("/grpc-hello", grpcHello)
 		g.POST("/uploadAvatar", uploadAvatar)
 		g.POST("/uploadAvatarSmms", uploadAvatarSmms)
 	}
 }
+
 func uploadAvatar(c *gin.Context) {
 	// 单文件
 	file, fh, err := c.Request.FormFile("file")
