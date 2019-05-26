@@ -1,12 +1,15 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"github.com/getsentry/raven-go"
+	"github.com/tommytan/garen/internal/justice"
 	"github.com/tommytan/garen/internal/service"
-	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/tommytan/garen/configs"
@@ -41,17 +44,28 @@ func main() {
 	// 初始化系统服务
 	service.New()
 
-	//// 正义 grpc server
-	//justice.SetupGrpcJustice()
+	// 正义 grpc server
+	jGrpc := justice.SetupGrpcJustice()
 
 	// 审判 http server
-	j := judgment.SetupHttpJudgment()
-	s := &http.Server{
-		Addr:           ":2333",
-		Handler:        j,
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
-		MaxHeaderBytes: 2 << 20,
+	jHttp := judgment.SetupHttpJudgment()
+
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, syscall.SIGHUP, syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT)
+	for {
+		s := <-c
+		switch s {
+		case syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT:
+			_, cancel := context.WithTimeout(context.Background(), 35*time.Second)
+			jGrpc.Stop()
+			_ = jHttp.Close()
+			service.Close()
+			cancel()
+			time.Sleep(time.Second)
+			return
+		case syscall.SIGHUP:
+		default:
+			return
+		}
 	}
-	_ = s.ListenAndServe()
 }

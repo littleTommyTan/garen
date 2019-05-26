@@ -46,4 +46,5 @@ func New() (dao *Dao) {
 // Close close the resource.
 func (d *Dao) Close() {
 	_ = d.Db.Close()
+	_ = d.Redis.Close()
 }

@@ -10,10 +10,13 @@ import (
 	"github.com/tommytan/garen/internal/judgment/user"
 	"github.com/tommytan/garen/internal/judgment/wechat"
 	"github.com/tommytan/garen/internal/judgment/whoareyou"
+	"log"
+	"net/http"
+	"time"
 )
 
 // SetupHttpJudgment 路由设置router
-func SetupHttpJudgment() *gin.Engine {
+func SetupHttpJudgment() (s *http.Server) {
 	r := gin.New()
 
 	r.Use(sentry.Recovery(raven.DefaultClient, false))
@@ -30,5 +33,19 @@ func SetupHttpJudgment() *gin.Engine {
 
 	whoareyou.Assemble(r)
 
-	return r
+	s = &http.Server{
+		Addr:           ":2333",
+		Handler:        r,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 2 << 20,
+	}
+
+	go func() {
+		if err := s.ListenAndServe(); err != nil {
+			log.Print(err)
+		}
+	}()
+
+	return
 }

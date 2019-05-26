@@ -6,12 +6,12 @@ import (
 	"log"
 	"time"
 
+	pb "github.com/tommytan/garen/internal/justice/hellogrpc"
 	"google.golang.org/grpc"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
 )
 
 const (
-	address     = "localhost:50051"
+	address     = "localhost:2233"
 	defaultName = "world"
 )
 

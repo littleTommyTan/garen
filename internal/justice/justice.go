@@ -1,34 +1,29 @@
 package justice
 
 import (
-	"context"
+	"github.com/sirupsen/logrus"
+	"github.com/tommytan/garen/internal/justice/hellogrpc"
+	"google.golang.org/grpc"
 	"log"
 	"net"
-
-	"google.golang.org/grpc"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
 )
 
-const (
-	port = ":50051"
-)
+func SetupGrpcJustice() (j *grpc.Server) {
+	j = grpc.NewServer()
 
-type server struct{}
+	// grpc services assemble
+	hellogrpc.Assemble(j)
 
-func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	log.Printf("Received: %v", in.Name)
-	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
-}
-
-func SetupGrpcJustice() {
-	lis, err := net.Listen("tcp", port)
+	lis, err := net.Listen("tcp", ":2233")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-	s := grpc.NewServer()
-	pb.RegisterGreeterServer(s, &server{})
-	log.Print("grpc server on ...")
-	if err := s.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %v", err)
-	}
+	go func() {
+		logrus.Infof("grpc server running...")
+		log.Print("")
+		if err := j.Serve(lis); err != nil {
+			log.Print(err)
+		}
+	}()
+	return
 }
