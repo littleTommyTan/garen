@@ -32,9 +32,6 @@ func init() {
 
 // main 入口 entrance
 func main() {
-
-	//gin.SetMode(gin.ReleaseMode)
-
 	// 阿里云日志服务测试
 	//logger.AliyunLoggerTest()
 

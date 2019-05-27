@@ -33,12 +33,17 @@ func New() (dao *Dao) {
 	if err != nil {
 		log.Print("Redis init failed: ", err)
 	}
+
 	ossClient, _ := oss.New("http://oss-cn-shanghai.aliyuncs.com/",
 		configs.GetConfiguration().OssAccessKey,
 		configs.GetConfiguration().OssAccessKeySecret)
 	bucket, err := ossClient.Bucket("tommytan-oss")
 	if err != nil {
-		log.Print("Oss init failed: ", err)
+		log.Print(err)
+	}
+	_, err = ossClient.ListBuckets()
+	if err != nil {
+		log.Print(err)
 	}
 	return &Dao{Db: connection, Redis: redisClient, Bucket: bucket}
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/getsentry/raven-go"
 	"github.com/gin-contrib/sentry"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 	"github.com/tommytan/garen/internal/judgment/middleware/logger"
 	"github.com/tommytan/garen/internal/judgment/music"
 	"github.com/tommytan/garen/internal/judgment/ping"
@@ -17,6 +18,8 @@ import (
 
 // SetupHttpJudgment 路由设置router
 func SetupHttpJudgment() (s *http.Server) {
+	gin.SetMode(gin.ReleaseMode)
+
 	r := gin.New()
 
 	r.Use(sentry.Recovery(raven.DefaultClient, false))
@@ -40,7 +43,7 @@ func SetupHttpJudgment() (s *http.Server) {
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 2 << 20,
 	}
-
+	logrus.Infof("http server running ...")
 	go func() {
 		if err := s.ListenAndServe(); err != nil {
 			log.Print(err)

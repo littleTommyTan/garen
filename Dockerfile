@@ -1,5 +1,6 @@
 FROM golang:latest
 
+ENV GIN_MODE release
 WORKDIR $GOPATH/src/github.com/tommytan/garen
 COPY . $GOPATH/src/github.com/tommytan/garen
 
