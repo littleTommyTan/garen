@@ -1,21 +1,26 @@
 package dao
 
 import (
+	"log"
+
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/go-redis/redis"
 	"github.com/jinzhu/gorm"
+
+	// init postgres driver
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/tommytan/garen/configs"
 	"github.com/tommytan/garen/internal/models"
-	"log"
 )
 
+// Dao 数据访问对象
 type Dao struct {
 	Db     *gorm.DB
 	Redis  *redis.Client
 	Bucket *oss.Bucket
 }
 
+// New 新建数据访问对象
 func New() (dao *Dao) {
 	connection, err := gorm.Open("postgres", configs.GetConfiguration().DSN)
 	if err != nil {

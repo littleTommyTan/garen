@@ -2,11 +2,13 @@ package logger
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/aliyun/aliyun-log-go-sdk/producer"
 	"github.com/tommytan/garen/configs"
-	"time"
 )
 
+// AliyunLoggerTest 阿里云日志服务
 func AliyunLoggerTest() {
 	producerConfig := producer.GetDefaultProducerConfig()
 	producerConfig.Endpoint = configs.GetConfiguration().LogEndpoint

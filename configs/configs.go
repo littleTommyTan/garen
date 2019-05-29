@@ -1,12 +1,14 @@
 package configs
 
 import (
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
+
+	"gopkg.in/yaml.v2"
 )
 
+// Configuration 配置结构体
 type Configuration struct {
-	WoaAppId           string `yaml:"woa_appid"`
+	WoaAppID           string `yaml:"woa_appid"`
 	WoaAppSecret       string `yaml:"woa_app_secret"`
 	DSN                string `yaml:"dsn"`
 	RedisHost          string `yaml:"redis_host"`
@@ -21,6 +23,7 @@ type Configuration struct {
 
 var configuration *Configuration
 
+// LoadConfiguration 加载配置
 func LoadConfiguration(path string) error {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {

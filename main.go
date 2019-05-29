@@ -4,13 +4,14 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/getsentry/raven-go"
-	"github.com/tommytan/garen/internal/justice"
-	"github.com/tommytan/garen/internal/service"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/getsentry/raven-go"
+	"github.com/tommytan/garen/internal/justice"
+	"github.com/tommytan/garen/internal/service"
 
 	"github.com/tommytan/garen/configs"
 	goCron "github.com/tommytan/garen/internal/cron"
@@ -42,10 +43,10 @@ func main() {
 	service.New()
 
 	// 正义 grpc server
-	jGrpc := justice.SetupGrpcJustice()
+	jGRPC := justice.SetupGrpcJustice()
 
 	// 审判 http server
-	jHttp := judgment.SetupHttpJudgment()
+	jHTTP := judgment.SetupHttpJudgment()
 
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, syscall.SIGHUP, syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT)
@@ -54,8 +55,8 @@ func main() {
 		switch s {
 		case syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT:
 			_, cancel := context.WithTimeout(context.Background(), 35*time.Second)
-			jGrpc.Stop()
-			_ = jHttp.Close()
+			jGRPC.Stop()
+			_ = jHTTP.Close()
 			service.Close()
 			cancel()
 			time.Sleep(time.Second)
