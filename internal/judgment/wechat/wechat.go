@@ -1,6 +1,7 @@
 package wechat
 
 import (
+	"github.com/sirupsen/logrus"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -23,7 +24,10 @@ func Assemble(r *gin.Engine) {
 		Cache: redis,
 	}
 	wechatService = wechat.NewWechat(config)
-
+	_, err := wechatService.GetJs().GetAccessToken()
+	if err != nil {
+		logrus.Errorf("wechat service init failed. %v", err)
+	}
 	g := r.Group("/wechat")
 	{
 		g.GET("/conf", getJsConf)

@@ -2,8 +2,9 @@ package ping
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tommytan/garen/internal/judgment/middleware/jwt"
+	"github.com/tommytan/garen/internal/judgment/jwt"
 	"log"
+	"net/http"
 	"time"
 )
 
@@ -14,9 +15,19 @@ func Assemble(r *gin.Engine) {
 			c.String(200, "pong")
 		})
 
+		g.GET("/hello/:hi/nihao/:lalala", func(c *gin.Context) {
+			hi := c.Param("hi")
+			lalala := c.Param("lalala")
+			if lalala == "" || hi == "" {
+				c.String(400, "params validation failed. ")
+				return
+			}
+			c.String(200, `hi, params ping. hi:%v lalala:%v`, hi, lalala)
+		})
+
 		g.GET("/vip", jwt.Auth(), func(c *gin.Context) {
 			val, _ := c.MustGet("userId").(string)
-			c.String(200, "pong pong pong, hi vip "+val)
+			c.String(http.StatusOK, "pong pong pong, hi vip "+val)
 		})
 
 		g.GET("/long_async", func(c *gin.Context) {

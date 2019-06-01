@@ -39,6 +39,7 @@ func LoadConfiguration(path string) error {
 	return err
 }
 
+// GetConfiguration 暴露配置
 func GetConfiguration() *Configuration {
 	return configuration
 }
