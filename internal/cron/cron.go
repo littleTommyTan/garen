@@ -8,8 +8,10 @@ import (
 func ring() {
 	logrus.Infof("goCron ring ~")
 }
+
+// Cron sheduler
 func Cron() {
-	gocron.Every(60).Seconds().Do(ring)
+	gocron.Every(300).Seconds().Do(ring)
 	gocron.Start()
 
 	gocron.RunAll()

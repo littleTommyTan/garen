@@ -1,10 +1,11 @@
 package judgment
 
 import (
-	"github.com/tommytan/garen/internal/judgment/goroutine"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/tommytan/garen/internal/judgment/goroutine"
 
 	"github.com/getsentry/raven-go"
 	"github.com/gin-contrib/sentry"
@@ -46,8 +47,8 @@ func SetupHTTPJudgment() (s *http.Server) {
 	s = &http.Server{
 		Addr:           ":2333",
 		Handler:        r,
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
+		ReadTimeout:    20 * time.Second,
+		WriteTimeout:   20 * time.Second,
 		MaxHeaderBytes: 2 << 20,
 	}
 	logrus.Infof("http server running ...")
