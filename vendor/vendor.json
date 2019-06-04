@@ -9,6 +9,12 @@
 			"revisionTime": "2016-07-06T22:07:25Z"
 		},
 		{
+			"checksumSHA1": "WW1lyEgw/7izW0wlNNVyoTO6HlE=",
+			"path": "github.com/Salvatore-Giordano/gin-redis-ip-limiter",
+			"revision": "409a923d7aa887812393e6c45acfc2b21a00c8e3",
+			"revisionTime": "2018-04-21T09:30:06Z"
+		},
+		{
 			"checksumSHA1": "4IXORTiADhSKTu0livKw4jlUtqM=",
 			"path": "github.com/Shopify/sarama",
 			"revision": "457a8e63133f18a8c625304a79d5d76de2e3fda2",

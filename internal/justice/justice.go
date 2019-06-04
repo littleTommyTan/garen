@@ -19,7 +19,7 @@ func SetupGrpcJustice() (j *grpc.Server) {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	go func() {
-		logrus.Infof("grpc server running ...")
+		logrus.Infof("grpc server is running ...")
 		if err := j.Serve(lis); err != nil {
 			log.Print(err)
 		}

@@ -25,10 +25,13 @@ func SetupHTTPJudgment() (s *http.Server) {
 	gin.SetMode(gin.ReleaseMode)
 
 	r := gin.New()
-
 	r.Use(sentry.Recovery(raven.DefaultClient, false))
-
 	r.Use(logger.LocalFileLogger())
+	//r.Use(iplimiter.NewRateLimiterMiddleware(redis.NewClient(&redis.Options{
+	//	Addr:     fmt.Sprintf("%v:%v", configs.GetConfiguration().RedisHost, configs.GetConfiguration().RedisPort),
+	//	Password: configs.GetConfiguration().RedisPwd,
+	//	DB:       1,
+	//}), "tommy-iplimiter", 100, 60*time.Second))
 
 	ping.Assemble(r)
 
@@ -51,7 +54,7 @@ func SetupHTTPJudgment() (s *http.Server) {
 		WriteTimeout:   20 * time.Second,
 		MaxHeaderBytes: 2 << 20,
 	}
-	logrus.Infof("http server running ...")
+	logrus.Infof("http server is running ...")
 	go func() {
 		if err := s.ListenAndServe(); err != nil {
 			log.Print(err)
