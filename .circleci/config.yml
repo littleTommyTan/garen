@@ -12,13 +12,14 @@ jobs:
       - checkout
 
       - run:
-          name: Package Sync
+          name: Dependenies Sync
           command: |
-            tools/package-sync.sh
+            make deps
 
 #      - run: go build .
 
-      - run: ls -al
+      - run: ls
+      - run: ls -al ./vendor/
 
 workflows:
   version: 2
