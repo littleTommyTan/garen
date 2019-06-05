@@ -50,8 +50,8 @@ func SetupHTTPJudgment() (s *http.Server) {
 	s = &http.Server{
 		Addr:           ":2333",
 		Handler:        r,
-		ReadTimeout:    20 * time.Second,
-		WriteTimeout:   20 * time.Second,
+		ReadTimeout:    5 * time.Second,
+		WriteTimeout:   5 * time.Second,
 		MaxHeaderBytes: 2 << 20,
 	}
 	logrus.Infof("http server is running ...")

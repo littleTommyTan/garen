@@ -26,9 +26,9 @@ func LocalFileLogger() gin.HandlerFunc {
 	//logClient.SetLevel(logrus.DebugLevel)
 
 	//log writer
-	logPath := "garen.log"
+	logPath := "./log/garen.log"
 	logWriter, err := rotatelogs.New(
-		"garen.%Y-%m-%d.log",
+		"./log/garen.%Y-%m-%d.log",
 		rotatelogs.WithLinkName(logPath),          // 生成软链，指向最新日志文件
 		rotatelogs.WithMaxAge(7*24*time.Hour),     // 文件最大保存时间
 		rotatelogs.WithRotationTime(24*time.Hour), // 日志切割时间间隔
