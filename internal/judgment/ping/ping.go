@@ -2,7 +2,7 @@ package ping
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tommytan/garen/internal/judgment/jwt"
+	"github.com/littletommytan/garen/internal/judgment/jwt"
 	"log"
 	"net/http"
 	"time"

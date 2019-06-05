@@ -2,9 +2,9 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tommytan/garen/internal/judgment/jwt"
-	"github.com/tommytan/garen/internal/models"
-	"github.com/tommytan/garen/internal/service"
+	"github.com/littletommytan/garen/internal/judgment/jwt"
+	"github.com/littletommytan/garen/internal/models"
+	"github.com/littletommytan/garen/internal/service"
 	"log"
 	"net/http"
 	"time"

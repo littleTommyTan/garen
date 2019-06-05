@@ -2,10 +2,8 @@ package greeterendpoint
 
 import (
 	"context"
+	"github.com/littletommytan/garen/internal/gokit/greeterservice"
 
-	"github.com/go-kit/kit/log"
-
-	"github.com/antklim/go-microservices/go-kit-greeter/pkg/greeterservice"
 	"github.com/go-kit/kit/endpoint"
 )
 
@@ -19,17 +17,15 @@ type Endpoints struct {
 
 // MakeServerEndpoints returns service Endoints, and wires in all the provided
 // middlewares.
-func MakeServerEndpoints(s greeterservice.Service, logger log.Logger) Endpoints {
+func MakeServerEndpoints(s greeterservice.Service) Endpoints {
 	var healthEndpoint endpoint.Endpoint
 	{
 		healthEndpoint = MakeHealthEndpoint(s)
-		healthEndpoint = LoggingMiddleware(log.With(logger, "method", "Health"))(healthEndpoint)
 	}
 
 	var greetingEndpoint endpoint.Endpoint
 	{
 		greetingEndpoint = MakeGreetingEndpoint(s)
-		greetingEndpoint = LoggingMiddleware(log.With(logger, "method", "Greeting"))(greetingEndpoint)
 	}
 
 	return Endpoints{

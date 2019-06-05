@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/getsentry/raven-go"
 	"github.com/gin-gonic/gin"
-	"github.com/tommytan/garen/internal/service"
+	"github.com/littletommytan/garen/internal/service"
 	"net/http"
 	"time"
 )

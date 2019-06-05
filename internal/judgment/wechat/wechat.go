@@ -5,9 +5,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/littletommytan/garen/configs"
 	"github.com/silenceper/wechat"
 	"github.com/silenceper/wechat/cache"
-	"github.com/tommytan/garen/configs"
 )
 
 var wechatService *wechat.Wechat

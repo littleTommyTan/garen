@@ -9,8 +9,8 @@ import (
 
 	// init postgres driver
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/tommytan/garen/configs"
-	"github.com/tommytan/garen/internal/models"
+	"github.com/littletommytan/garen/configs"
+	"github.com/littletommytan/garen/internal/models"
 )
 
 // Dao 数据访问对象

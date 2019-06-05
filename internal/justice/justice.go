@@ -1,8 +1,8 @@
 package justice
 
 import (
+	"github.com/littletommytan/garen/internal/justice/hellogrpc"
 	"github.com/sirupsen/logrus"
-	"github.com/tommytan/garen/internal/justice/hellogrpc"
 	"google.golang.org/grpc"
 	"log"
 	"net"

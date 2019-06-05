@@ -1,6 +1,6 @@
 package service
 
-import "github.com/tommytan/garen/internal/dao"
+import "github.com/littletommytan/garen/internal/dao"
 
 var Dao *dao.Dao
 

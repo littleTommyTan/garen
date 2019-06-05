@@ -39,6 +39,12 @@
 			"revisionTime": "2019-04-16T14:42:36Z"
 		},
 		{
+			"checksumSHA1": "gaT7FBF9uH5TY4lCo96ySrYXjek=",
+			"path": "github.com/armon/go-metrics",
+			"revision": "ec5e00d3c878b2a97bbe0884ef45ffd1b4f669f5",
+			"revisionTime": "2019-04-30T14:04:13Z"
+		},
+		{
 			"checksumSHA1": "56J7Zbj/haU4YAzYq+PvTfFxk8Y=",
 			"path": "github.com/bradfitz/gomemcache/memcache",
 			"revision": "551aad21a6682b95329c1f5bd62ee5060d64f7e8",
@@ -143,6 +149,12 @@
 			"versionExact": "v1.3.0"
 		},
 		{
+			"checksumSHA1": "oqtNI+0KmQ+eZgH5FArkETtOoHE=",
+			"path": "github.com/go-kit/kit/endpoint",
+			"revision": "e75cc1ab0282c013188f87a858f066ccd6cedbf1",
+			"revisionTime": "2019-05-30T15:11:02Z"
+		},
+		{
 			"checksumSHA1": "u9yPyzxDLfX3DomC0riuXvV2W6w=",
 			"path": "github.com/go-kit/kit/log",
 			"revision": "fbab14bd4c487151b206c2a41ecfbb015e32c1e0",
@@ -153,6 +165,48 @@
 			"path": "github.com/go-kit/kit/log/level",
 			"revision": "fbab14bd4c487151b206c2a41ecfbb015e32c1e0",
 			"revisionTime": "2019-05-06T18:12:42Z"
+		},
+		{
+			"checksumSHA1": "N8v+CT0605zJF2qjA5Woyx9aZ8E=",
+			"path": "github.com/go-kit/kit/sd",
+			"revision": "e75cc1ab0282c013188f87a858f066ccd6cedbf1",
+			"revisionTime": "2019-05-30T15:11:02Z"
+		},
+		{
+			"checksumSHA1": "mrM2axmXFt79xuP43Zh2lFWvTxE=",
+			"path": "github.com/go-kit/kit/sd/consul",
+			"revision": "e75cc1ab0282c013188f87a858f066ccd6cedbf1",
+			"revisionTime": "2019-05-30T15:11:02Z"
+		},
+		{
+			"checksumSHA1": "MN3AKCr+ut3mtdMmw3nGjzj83Cc=",
+			"path": "github.com/go-kit/kit/sd/internal/instance",
+			"revision": "e75cc1ab0282c013188f87a858f066ccd6cedbf1",
+			"revisionTime": "2019-05-30T15:11:02Z"
+		},
+		{
+			"checksumSHA1": "U3hqzroF3ax3Dd9P3EJ7/7Ot7jE=",
+			"path": "github.com/go-kit/kit/transport",
+			"revision": "e75cc1ab0282c013188f87a858f066ccd6cedbf1",
+			"revisionTime": "2019-05-30T15:11:02Z"
+		},
+		{
+			"checksumSHA1": "nESeJv6VTWWwNlkGr4TDZYDRPY0=",
+			"path": "github.com/go-kit/kit/transport/grpc",
+			"revision": "e75cc1ab0282c013188f87a858f066ccd6cedbf1",
+			"revisionTime": "2019-05-30T15:11:02Z"
+		},
+		{
+			"checksumSHA1": "5k+0cwz+Pxc5Zvre9F2ToxI3bRg=",
+			"path": "github.com/go-kit/kit/transport/http",
+			"revision": "e75cc1ab0282c013188f87a858f066ccd6cedbf1",
+			"revisionTime": "2019-05-30T15:11:02Z"
+		},
+		{
+			"checksumSHA1": "1hJiKw/bKG/GYAlrujWbOMs38GY=",
+			"path": "github.com/go-kit/kit/util/conn",
+			"revision": "e75cc1ab0282c013188f87a858f066ccd6cedbf1",
+			"revisionTime": "2019-05-30T15:11:02Z"
 		},
 		{
 			"checksumSHA1": "g8yM1TRZyIjXtopiqbslzgLqtM0=",
@@ -269,6 +323,42 @@
 			"revisionTime": "2019-03-22T06:41:13Z"
 		},
 		{
+			"checksumSHA1": "7JPBtnIgLkdcJ0ldXMTEnVjNEjA=",
+			"path": "github.com/hashicorp/consul/api",
+			"revision": "2587a32688ff05e88b6ef211816d008c1c4a47ed",
+			"revisionTime": "2019-06-05T01:40:22Z"
+		},
+		{
+			"checksumSHA1": "x3Hz3DwZpIp521DL8nh9FpOQP/4=",
+			"path": "github.com/hashicorp/go-cleanhttp",
+			"revision": "d3fcbee8e1810ecee4bdbf415f42f84cfd0e3361",
+			"revisionTime": "2019-04-06T16:20:18Z"
+		},
+		{
+			"checksumSHA1": "P1Enisj7Nzf3wMl6lgPPar0ljoY=",
+			"path": "github.com/hashicorp/go-immutable-radix",
+			"revision": "0146a9aba1948ded4ed290cfd3fded2c15313f63",
+			"revisionTime": "2019-05-22T20:29:52Z"
+		},
+		{
+			"checksumSHA1": "QupRe0mqBXbwbqU/iVExXT1CAng=",
+			"path": "github.com/hashicorp/go-rootcerts",
+			"revision": "63503fb4e1eca22f9ae0f90b49c5d5538a0e87eb",
+			"revisionTime": "2019-01-18T17:24:49Z"
+		},
+		{
+			"checksumSHA1": "oPFbkG2QReaXuViYt+zMXLdT4Mo=",
+			"path": "github.com/hashicorp/golang-lru/simplelru",
+			"revision": "59383c442f7d7b190497e9bb8fc17a48d06cd03f",
+			"revisionTime": "2019-05-20T14:04:33Z"
+		},
+		{
+			"checksumSHA1": "0PeWsO2aI+2PgVYlYlDPKfzCLEQ=",
+			"path": "github.com/hashicorp/serf/coordinate",
+			"revision": "15cfd05de3dffb3664aa37b06e91f970b825e380",
+			"revisionTime": "2019-04-10T18:18:27Z"
+		},
+		{
 			"checksumSHA1": "ipOmfm2LvGPzstkoctFkxbgoOLw=",
 			"path": "github.com/jasonlvhit/gocron",
 			"revision": "5bcdd9fcfa9bf10574722841a11ccb2a57866dc8",
@@ -351,6 +441,18 @@
 			"path": "github.com/mattn/go-isatty",
 			"revision": "c1975dc15c1d481e8da23f6ed313bb071136b98f",
 			"revisionTime": "2019-04-24T07:51:23Z"
+		},
+		{
+			"checksumSHA1": "7zLQC+jG19ndjH24FVh/+ZliHac=",
+			"path": "github.com/mitchellh/go-homedir",
+			"revision": "af06845cf3004701891bf4fdb884bfe4920b3727",
+			"revisionTime": "2019-01-27T04:21:35Z"
+		},
+		{
+			"checksumSHA1": "J+g0oZePWp2zSIISD2dZZKTxmgg=",
+			"path": "github.com/mitchellh/mapstructure",
+			"revision": "3536a929edddb9a5b34bd6861dc4a9647cb459fe",
+			"revisionTime": "2018-10-05T04:51:35Z"
 		},
 		{
 			"checksumSHA1": "ZTcgWKWHsrX0RXYVXn5Xeb8Q0go=",
@@ -521,5 +623,5 @@
 			"revisionTime": "2018-11-15T11:05:04Z"
 		}
 	],
-	"rootPath": "github.com/tommytan/garen"
+	"rootPath": "github.com/littletommytan/garen"
 }

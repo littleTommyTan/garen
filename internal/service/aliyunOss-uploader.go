@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/tommytan/garen/internal/helpers"
+	"github.com/littletommytan/garen/internal/helpers"
 	"mime/multipart"
 )
 

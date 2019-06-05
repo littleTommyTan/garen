@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/tommytan/garen/internal/justice/hellogrpc"
+	pb "github.com/littletommytan/garen/internal/justice/hellogrpc"
 	"google.golang.org/grpc"
 )
 

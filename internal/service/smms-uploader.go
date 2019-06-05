@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"github.com/tommytan/garen/internal/models"
+	"github.com/littletommytan/garen/internal/models"
 	"io"
 	"io/ioutil"
 	"log"

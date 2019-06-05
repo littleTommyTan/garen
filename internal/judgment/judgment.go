@@ -5,24 +5,24 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/tommytan/garen/internal/judgment/goroutine"
+	"github.com/littletommytan/garen/internal/judgment/goroutine"
 
 	"github.com/getsentry/raven-go"
 	"github.com/gin-contrib/sentry"
 	"github.com/gin-gonic/gin"
+	"github.com/littletommytan/garen/internal/judgment/logger"
+	"github.com/littletommytan/garen/internal/judgment/money"
+	"github.com/littletommytan/garen/internal/judgment/music"
+	"github.com/littletommytan/garen/internal/judgment/ping"
+	"github.com/littletommytan/garen/internal/judgment/user"
+	"github.com/littletommytan/garen/internal/judgment/wechat"
+	"github.com/littletommytan/garen/internal/judgment/whoareyou"
 	"github.com/sirupsen/logrus"
-	"github.com/tommytan/garen/internal/judgment/logger"
-	"github.com/tommytan/garen/internal/judgment/money"
-	"github.com/tommytan/garen/internal/judgment/music"
-	"github.com/tommytan/garen/internal/judgment/ping"
-	"github.com/tommytan/garen/internal/judgment/user"
-	"github.com/tommytan/garen/internal/judgment/wechat"
-	"github.com/tommytan/garen/internal/judgment/whoareyou"
 )
 
 // SetupHTTPJudgment 路由设置router
 func SetupHTTPJudgment() (s *http.Server) {
-	gin.SetMode(gin.ReleaseMode)
+	//gin.SetMode(gin.ReleaseMode)
 
 	r := gin.New()
 	r.Use(sentry.Recovery(raven.DefaultClient, false))

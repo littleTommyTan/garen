@@ -7,16 +7,12 @@ import (
 	"time"
 
 	"github.com/go-kit/kit/log"
-	"github.com/go-kit/kit/sd"
 	consulsd "github.com/go-kit/kit/sd/consul"
 	"github.com/hashicorp/consul/api"
 )
 
 // ConsulRegister method.
-func ConsulRegister(consulAddress string,
-	consulPort string,
-	advertiseAddress string,
-	advertisePort string) (registar sd.Registrar) {
+func ConsulRegister() (registar *consulsd.Registrar) {
 
 	// Logging domain.
 	var logger log.Logger
@@ -32,29 +28,30 @@ func ConsulRegister(consulAddress string,
 	var client consulsd.Client
 	{
 		consulConfig := api.DefaultConfig()
-		consulConfig.Address = consulAddress + ":" + consulPort
+		consulConfig.Address = "localhost:8500"
 		consulClient, err := api.NewClient(consulConfig)
 		if err != nil {
-			logger.Log("err", err)
+			_ = logger.Log("err", err)
 			os.Exit(1)
 		}
 		client = consulsd.NewClient(consulClient)
 	}
 
 	check := api.AgentServiceCheck{
-		HTTP:     "http://" + advertiseAddress + ":" + advertisePort + "/health",
-		Interval: "10s",
-		Timeout:  "1s",
-		Notes:    "Basic health checks",
+		HTTP:                           "http://localhost:8500",
+		Interval:                       "3s",
+		Timeout:                        "3s",
+		Notes:                          "Basic health checks",
+		Method:                         "Get",
+		DeregisterCriticalServiceAfter: "30s",
 	}
 
-	port, _ := strconv.Atoi(advertisePort)
-	num := rand.Intn(100) // to make service ID unique
+	num := rand.Intn(1000000)
 	asr := api.AgentServiceRegistration{
-		ID:      "go-kit-srv-greeter-" + strconv.Itoa(num), //unique service ID
+		ID:      "go-kit-srv-greeter-" + strconv.Itoa(num),
 		Name:    "go-kit-srv-greeter",
-		Address: advertiseAddress,
-		Port:    port,
+		Address: "192.168.1.4",
+		Port:    5500,
 		Tags:    []string{"go-kit", "greeter"},
 		Check:   &check,
 	}

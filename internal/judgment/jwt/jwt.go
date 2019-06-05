@@ -69,7 +69,7 @@ func (j *JWT) CreateToken(userId string) (string, error) {
 		userId,
 		jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(time.Hour * 2).Unix(),
-			Issuer:    "tommytan-issuer",
+			Issuer:    "littletommytan-issuer",
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)

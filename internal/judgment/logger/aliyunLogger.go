@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/aliyun/aliyun-log-go-sdk/producer"
-	"github.com/tommytan/garen/configs"
+	"github.com/littletommytan/garen/configs"
 )
 
 // AliyunLoggerTest 阿里云日志服务

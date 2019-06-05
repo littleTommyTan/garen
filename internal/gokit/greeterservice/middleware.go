@@ -23,7 +23,7 @@ type loggingMiddleware struct {
 
 func (m loggingMiddleware) Health() (healthy bool) {
 	defer func(begin time.Time) {
-		m.logger.Log(
+		_ = m.logger.Log(
 			"method", "Health",
 			"healthy", healthy,
 			"took", time.Since(begin),
@@ -35,7 +35,7 @@ func (m loggingMiddleware) Health() (healthy bool) {
 
 func (m loggingMiddleware) Greeting(name string) (greeting string) {
 	defer func(begin time.Time) {
-		m.logger.Log(
+		_ = m.logger.Log(
 			"method", "Greeting",
 			"name", name,
 			"greeting", greeting,
