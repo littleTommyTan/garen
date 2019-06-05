@@ -29,6 +29,15 @@ services:
         aliases:
           - cockroach2
 
+networks:
+  roachnet:
+    driver: bridge
+
+
+
+
+
+
   redis:
     image: redis
     container_name: redis
@@ -37,9 +46,10 @@ services:
     ports:
       - '6379:6379'
 
-networks:
-  roachnet:
-    driver: bridge
+
+
+
+
 
 #  mysql:
 #    image: mysql:5.7
@@ -49,6 +59,10 @@ networks:
 #      - '3306:3306'
 #    environment:
 #      MYSQL_ROOT_PASSWORD: root
+
+
+
+
 
 #  zookeeper:
 #    image: wurstmeister/zookeeper
@@ -72,26 +86,38 @@ networks:
 #      KAFKA_ADVERTISED_PORT: '9092'
 #      KAFKA_ZOOKEEPER_CONNECT: zk:2181
 
-        #  postgres:
-        #    image: postgres
-        #    container_name: postgres
-        #    restart: always
-        #    ports:
-        #      - '5432:5432'
-        #    environment:
-        #      POSTGRES_USER: root
-        #      POSTGRES_PASSWORD: pg-pwd
 
-        #  reverse-proxy:
-        #    image: traefik # The official Traefik docker image
-        #    command: --api --docker # Enables the web UI and tells Traefik to listen to docker
-        #    ports:
-        #      - "80:80"     # The HTTP port
-        #      - "8080:8080" # The Web UI (enabled by --api)
-        #    volumes:
-        #      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
-        #
-        #  whoami:
-        #    image: containous/whoami # A container that exposes an API to show its IP address
-      #    labels:
-      #      - "traefik.frontend.rule=Host:whoami.docker.localhost"
+
+
+
+
+#   consul-agent-1: &consul-agent
+#     image: consul:latest
+#     networks:
+#       - consul-demo
+#     command: "agent -retry-join consul-server-bootstrap -client 0.0.0.0"
+
+#   consul-agent-2:
+#     <<: *consul-agent
+
+#   consul-agent-3:
+#     <<: *consul-agent
+
+#   consul-server-1: &consul-server
+#     <<: *consul-agent
+#     command: "agent -server -retry-join consul-server-bootstrap -client 0.0.0.0"
+
+#   consul-server-2:
+#     <<: *consul-server
+
+#   consul-server-bootstrap:
+#     <<: *consul-agent
+#     ports:
+#       - "8400:8400"
+#       - "8500:8500"
+#       - "8600:8600"
+#       - "8600:8600/udp"
+#     command: "agent -server -bootstrap-expect 3 -ui -client 0.0.0.0"
+
+# networks:
+#   consul-demo:
