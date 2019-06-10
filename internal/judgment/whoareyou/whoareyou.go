@@ -2,11 +2,12 @@ package whoareyou
 
 import (
 	"fmt"
+	"net/http"
+	"time"
+
 	"github.com/getsentry/raven-go"
 	"github.com/gin-gonic/gin"
 	"github.com/littletommytan/garen/internal/service"
-	"net/http"
-	"time"
 )
 
 func Assemble(r *gin.Engine) {

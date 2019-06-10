@@ -59,7 +59,6 @@ func main() {
 			_ = jHTTP.Close()
 			service.Close()
 			cancel()
-			time.Sleep(time.Second)
 			return
 		case syscall.SIGHUP:
 		default:

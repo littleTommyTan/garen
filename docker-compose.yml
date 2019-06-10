@@ -29,6 +29,14 @@ services:
         aliases:
           - cockroach2
 
+  redis:
+    image: redis
+    container_name: redis
+    command: redis-server --requirepass 'redis-pwd'
+    restart: always
+    ports:
+      - '6379:6379'
+
 networks:
   roachnet:
     driver: bridge
@@ -38,13 +46,6 @@ networks:
 
 
 
-  redis:
-    image: redis
-    container_name: redis
-    command: redis-server --requirepass 'redis-pwd'
-    restart: always
-    ports:
-      - '6379:6379'
 
 
 
