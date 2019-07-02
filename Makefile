@@ -8,6 +8,9 @@ test:
 run:
 	go run main.go
 
+build:
+	GOOS=linux GOARCH=amd64 go build -o dist/garen
+
 deps:
 	go get -u github.com/kardianos/govendor
 	govendor sync

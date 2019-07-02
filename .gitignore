@@ -32,3 +32,6 @@
 
 # cockroach
 /cockroach-data
+
+#build 
+/dist

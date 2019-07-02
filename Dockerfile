@@ -1,10 +1,7 @@
-FROM golang:latest
+FROM debian:latest
+RUN mkdir -p /app
+WORKDIR /app
 
-ENV GIN_MODE release
-WORKDIR $GOPATH/src/github.com/tommytan/garen
-COPY . $GOPATH/src/github.com/tommytan/garen
+ADD ./dist/garen /app/garen
 
-RUN go build .
-
-EXPOSE 80
 CMD ["./garen"]
