@@ -82,7 +82,7 @@ func hi() {
 	var postData = gin.H{
 		"msgtype": "text",
 		"text": gin.H{
-			"content": "新的一天来啦，工作也要元气满满呢～",
+			"content": "新的一天来啦，工作也要元气满满呢",
 		},
 	}
 	data, err := json.Marshal(postData)
@@ -105,12 +105,39 @@ func ping() {
 	}
 	httpPostJson(chuyinUrl, string(data))
 }
+func buyaoshuila() {
+	var postData = gin.H{
+		"msgtype": "text",
+		"text": gin.H{
+			"content": "不要睡啦，起来干活",
+		},
+	}
+	data, err := json.Marshal(postData)
+	if err != nil {
+		return
+	}
+	httpPostJson(chuyinUrl, string(data))
+}
+
+func xiaoxie() {
+	var postData = gin.H{
+		"msgtype": "text",
+		"text": gin.H{
+			"content": "可以去吃点零食小歇一下呢",
+		},
+	}
+	data, err := json.Marshal(postData)
+	if err != nil {
+		return
+	}
+	httpPostJson(chuyinUrl, string(data))
+}
 
 func xinkulaNoon() {
 	var postData = gin.H{
 		"msgtype": "text",
 		"text": gin.H{
-			"content": "大家辛苦了，去吃午饭吧～",
+			"content": "大家辛苦了，去吃午饭吧",
 		},
 	}
 	data, err := json.Marshal(postData)
@@ -124,7 +151,7 @@ func xinkulaAfterWork() {
 	var postData = gin.H{
 		"msgtype": "text",
 		"text": gin.H{
-			"content": "大家辛苦了，准备下班吧～",
+			"content": "大家辛苦了，准备下班吧",
 		},
 	}
 	data, err := json.Marshal(postData)
